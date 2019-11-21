@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<bean id="boss" class="com.briup.ioc.annotation_13.Boss">
+	<property name="name" value="小明"></property>
+</bean>
+
+<bean id="c" class="com.briup.ioc.annotation_13.Car">
+	<property name="name" value="唐"></property>
+	<property name="price" value="268000"></property>
+</bean>
+<bean id="car" class="com.briup.ioc.annotation_13.Car">
+	<property name="name" value="本田"></property>
+	<property name="price" value="168000"></property>
+</bean>
+
+  
+<bean id="of" class="com.briup.ioc.annotation_13.Office"></bean>
+
+
+<!-- 读取项目中的 ioc注解 @Autowired -->
+<context:annotation-config/>
+
+
+</beans>

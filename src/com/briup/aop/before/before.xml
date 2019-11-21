@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.briup.aop" />
+	<!-- 配置切面类 -->
+
+	<!-- 配置advice  -->
+
+	<!-- 配置目标对象 -->
+	<context:component-scan base-package="com.briup.aop.before"/>
+	<context:component-scan base-package="com.briup.aop.service"/>
+	<!-- 配置代理对象 -->
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces" value="com.briup.aop.service.IAccountService"></property>
+		<property name="target" ref="aser"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>beforeAdvice</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

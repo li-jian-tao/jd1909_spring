@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.3.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- 目标对象 -->
+	<bean id="target" class="com.briup.aop.service.impl.AccountServiceImpl"></bean>
+	<!-- 通知 -->
+	<bean id="before" class="com.briup.aop.before.MyBeforeAdvice">
+		<property name="as" ref="as"></property>	
+	</bean>
+	<!-- 切面类 -->
+	<bean id="as" class="com.briup.aop.aspect_切面类.MyAspect"></bean>
+		
+		
+		
+		
+<!-- 配置自动代理 : 切入点属于的类 -->
+<!-- <aop:config>
+	<aop:pointcut id="pc" 
+	expression="execution(void com.briup.aop.service..*.bank*(..))" />
+	<aop:advisor advice-ref="before" 
+				 pointcut-ref="pc" />
+</aop:config> -->
+
+
+<aop:config>
+	<aop:pointcut 
+		expression="execution(void com.briup.aop.service..*.bank*(..))" 
+		id="pc"/>
+		
+	<aop:aspect ref="as"><!-- 切面类: -->
+	
+		<aop:after 
+		    method="commit" 
+		    pointcut-ref="pc"/>
+		
+		<aop:after-throwing 
+			method="hg" 
+			throwing="Exception" 
+			pointcut-ref="pc"/>
+			
+	</aop:aspect>
+	
+</aop:config>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>

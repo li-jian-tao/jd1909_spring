@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<!--  演示      -->
+	<bean id="student" class="com.briup.ioc.proEdit_11.Student">
+		<property name="id" value="1"/>
+		<property name="name" value="tom"/>
+		<property name="age" value="45"/>
+		<property name="gender" value="true"/>
+		<property name="address" >
+			<value>昆山,学院路,中国</value>
+		</property>
+	</bean>
+	<!-- 注册自定义属性编辑器 -->
+	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<!-- 如果spring遇到address不会设置值的话 就调用myEdit处理 -->
+				<entry key="com.briup.ioc.proEdit_11.Address" 
+					   value="com.briup.ioc.proEdit_11.MyEdit"/>
+			</map>
+		</property>
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+</beans>

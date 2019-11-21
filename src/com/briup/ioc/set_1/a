@@ -1,0 +1,6 @@
+1，把java类配置到spring容器中
+2，把java类配置多个对象到spring容器中
+3，给spring容器中的bean对象 取别名
+4，测试spring的单例的维护对象
+5，修改spring为非单例维护对象
+6，通过property标签给spring容器中bean的属性设置值

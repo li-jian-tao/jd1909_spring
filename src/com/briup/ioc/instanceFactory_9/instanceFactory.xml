@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    
+    
+    
+     <!-- 普通类对象 放到容器中 -->
+    <bean id="f2" 
+          class="com.briup.ioc.instanceFactory_9.InsFactory"></bean>
+   
+   
+   
+   
+   
+   
+   
+    <!-- 指定容器中哪个普通对象 为工厂 对象 -->
+    <bean id="f3" 
+    	  scope="prototype"
+    	  factory-bean="f2" 
+    	  factory-method="geth"></bean>
+    
+    
+    
+    
+	
+</beans>

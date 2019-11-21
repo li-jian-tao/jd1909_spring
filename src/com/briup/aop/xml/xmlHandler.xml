@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.3.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<context:component-scan base-package="com.briup.aop"/>
+
+
+	<!-- 配置目标对象 -->
+
+	<!-- 配置切面类 -->
+
+	<!-- 配置代理对象 -->
+	<aop:config>
+		<aop:pointcut id="myPointCut" expression="execution(* com.briup.aop.service..*.*(..))"/>
+		<aop:aspect ref="aspect"><!-- 引用某一个切面类   推荐使用   完美切面类   -->
+			<!-- <aop:before method="log" pointcut-ref="myPointCut"/> -->
+			<!-- <aop:after method="commit" pointcut-ref="myPointCut"/> -->
+			<aop:around method="commit" pointcut-ref="myPointCut"/>
+		</aop:aspect>
+	</aop:config>
+
+	<!-- after表示不管方法是否正常结束都会起作用 -->
+
+	<!-- after-returning表示方法正常结束才会起作用(抛异常时候不起作用) -->
+
+	<!-- throwing="ex"表示throwingTest方法中接收异常对象的名字一定要是ex -->
+
+
+</beans>
